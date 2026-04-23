@@ -8,15 +8,15 @@
 // Return: n/a
 /**************************************************************/
   const firebaseConfig = {
-    apiKey: ,
-    authDomain: ,
-    databaseURL: ,
-    projectId: ,
-    storageBucket: ,
-    messagingSenderId:,
-    appId:
+    apiKey: "AIzaSyDbGY9zzewo6dUZL94n_s-CmAqezLvljCU",
+    authDomain: "comp-daniel.firebaseapp.com",
+    databaseURL: "https://comp-daniel-default-rtdb.firebaseio.com",
+    projectId: "comp-daniel",
+    storageBucket: "comp-daniel.firebasestorage.app",
+    messagingSenderId: "374735681822",
+    appId: "1:374735681822:web:897998b09892f3be55710f",
+    measurementId: "G-NL11TMTH06"
   };
-
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
