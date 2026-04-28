@@ -19,9 +19,14 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 /**************************************************************/
 function helloWorld(){
   console.log("Kia ora te ao()")
-  firebase.database().ref('/').set(
+  firebase.database().ref('users/Ben').set(
     {
-      message: 'Kia ora te ao'
+      
+      age: 22,
+      
+      Been_to_epsteins_island: true,
+
+
     }
   )
 }
