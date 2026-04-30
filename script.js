@@ -17,6 +17,7 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 // The ref('/') part tells the operation to write to the base level of the database "/"
 // This means it replaces the whole database with message:Hello World
 /**************************************************************/
+
 function helloWorld(){
   console.log("Kia ora te ao()")
   firebase.database().ref('users/Ben').set(
@@ -31,10 +32,40 @@ function helloWorld(){
   )
 }
 function goodbyeWorld(){
-  console.log("Goodbye()")
-  firebase.database().ref('/').set(
-    {
-      message: 'Goodbye'
-    }
-  )
+  databaseOutput = 'hello'
+  console.log("Running goodbyeWorld()")
+  firebase.database().ref('/users').once('value', DO_THIS )
 }
+function DO_THIS(snapshot){
+  console.log (snapshot.val());
+}
+function simpleRead() {
+    console.log("Reading message");
+    firebase.database().ref('/').child('message').once('value', display);
+    console.log("Leaving simpleRead")
+}
+function display(snapshot) {
+    console.log("Running display(), the message is: " + snapshot.val())
+    HTML_OUTPUT.innerHTML = snapshot.val();
+}
+highscoreTable = {
+        game1: {
+            users: {
+                Dhruv: 99999,
+                Jack: 10000,
+                Michael: "3.141",
+                Sasha: 0.5,
+                Yug: 987654321
+            }
+        },
+        game2: {
+            users: {
+                Dhruv: 13,
+                Jack: 14,
+                Mikaela: 7,
+                Sasha: 3,
+                Yug: 12
+            }
+        }
+    }
+    firebase.database().ref('/').set(highscoreTable)
