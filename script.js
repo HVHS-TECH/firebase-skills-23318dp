@@ -43,6 +43,11 @@ function simpleRead() {
     console.log("Reading message");
     firebase.database().ref('/').child('message').once('value', display);
     console.log("Leaving simpleRead")
+
+}
+function fb_readListener(){
+  console.log("Read Listener");
+  firebase.database().ref('/message').on('value', fb_logDatabaseRead)
 }
 function display(snapshot) {
     console.log("Running display(), the message is: " + snapshot.val())
