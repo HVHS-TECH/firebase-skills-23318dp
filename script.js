@@ -17,7 +17,8 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 // The ref('/') part tells the operation to write to the base level of the database "/"
 // This means it replaces the whole database with message:Hello World
 /**************************************************************/
-
+let user = "jack";
+let score ="0"
 function helloWorld(){
   console.log("Kia ora te ao()")
   firebase.database().ref('users/Ben').set(
@@ -41,14 +42,23 @@ function DO_THIS(snapshot){
 }
 function simpleRead() {
     console.log("Reading message");
-    firebase.database().ref('/').child('message').once('value', display);
+    firebase.database().ref('/game1/users/'+user).child('Jack').once('value', display, fb_readError);
     console.log("Leaving simpleRead")
 
 }
-function fb_readListener(){
-  console.log("Read Listener");
-  firebase.database().ref('/message').on('value', fb_logDatabaseRead)
+function fb_readError() {
+  console.log ("There was an error reading the message");
+  console.error(error);
 }
+function setMessage() {
+  firebase.database().ref('/users/Jack').set(
+    {
+      message: 'hi'
+    }
+  )
+}
+
+
 function display(snapshot) {
     console.log("Running display(), the message is: " + snapshot.val())
     HTML_OUTPUT.innerHTML = snapshot.val();
