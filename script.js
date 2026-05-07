@@ -42,10 +42,21 @@ function DO_THIS(snapshot){
 }
 function simpleRead() {
     console.log("Reading message");
-    firebase.database().ref('/game1/users/'+user).child('Jack').once('value', display, fb_readError);
+    firebase.database().ref('/game1/users/'+user).child('Jack').once('value', goodbyeWorld, fb_readError);
     console.log("Leaving simpleRead")
+    
 
 }
+function fb_readHighScores(){
+console.log("Reading High scores");
+firebase.database().ref('/highscoreTable').once('value',displayHighScore,fb_readError)
+}
+
+function displayHighScore(){
+  console.log ("")
+}
+
+
 function fb_readError() {
   console.log ("There was an error reading the message");
   console.error(error);
@@ -63,6 +74,8 @@ function display(snapshot) {
     console.log("Running display(), the message is: " + snapshot.val())
     HTML_OUTPUT.innerHTML = snapshot.val();
 }
+
+
 highscoreTable = {
         game1: {
             users: {
@@ -83,4 +96,4 @@ highscoreTable = {
             }
         }
     }
-    firebase.database().ref('/').set(highscoreTable)
+    firebase.database().ref('/highscoreTable').set(highscoreTable)
