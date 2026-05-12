@@ -49,6 +49,7 @@ function simpleRead() {
 }
 function fb_readHighScores(){
 console.log("Reading High scores");
+HTML_OUTPUT.innerHTML = "Reading High Scores";
 firebase.database().ref('highscoreTable/game2/users').once('value',fb_logDataBase,fb_readError)
 }
 
@@ -68,9 +69,11 @@ function setMessage() {
     }
   )
 }
-
+var HS = {};
 function fb_logDataBase(snapshot){
     console.log(snapshot.val());
+    HTML_OUTPUT.innerHTML = snapshot.val();
+    HS = snapshot.val();
 }
 function display(snapshot) {
     console.log("Running display(), the message is: " + snapshot.val())
@@ -83,9 +86,17 @@ function display(snapshot) {
     }
     else {
         console.log("PlaqboyMax's message is: " + dbData)
+        HTML_OUTPUT.innerHTML = "";
     }
 }
+function fb_displayHighScores(snapshot) {
+  snapshot.forEach(fb_showOneScore)
 
+}
+function fb_showOneScore(child){
+  console,log(child.val());
+}
+HTML_OUTPUT.innerHTML = "";
 highscoreTable = {
         game1: {
             users: {
