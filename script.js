@@ -50,11 +50,18 @@ function simpleRead() {
 function fb_readHighScores(){
 console.log("Reading High scores");
 HTML_OUTPUT.innerHTML = "Reading High Scores";
-firebase.database().ref('highscoreTable/game2/users').once('value',fb_logDataBase,fb_readError)
+firebase.database().ref('highscoreTable/game2/users').orderByValue().limitToLast(3).once('value', displayHighScore, fb_readError);
 }
 
-function displayHighScore(){
-  console.log ("Highscore")
+function displayHighScore(snapshot){
+  snapshot.forEach(fb_showOneScore)
+  
+
+function fb_showOneScore(child){
+  console.log(child.key+" got "+ child.val()+" points");
+  HTML_OUTPUT.innerHTML = child.key+" recieved "+ child.val()+" puntitos"
+
+}
 }
 
 
