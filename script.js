@@ -59,7 +59,7 @@ function displayHighScore(snapshot){
 
 function fb_showOneScore(child){
   console.log(child.key+" got "+ child.val()+" points");
-  HTML_OUTPUT.innerHTML = child.key+" recieved "+ child.val()+" puntitos"
+  HTML_OUTPUT.innerHTML += child.key+" recieved "+ child.val()+" puntitos"
 
 }
 }
@@ -103,6 +103,16 @@ function fb_displayHighScores(snapshot) {
 function fb_showOneScore(child){
   console,log(child.val());
 }
+function fb_popupLogin() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    GLOBAL_user = result.user;  // Save the user details object to a global variable
+    console.log("User has logged in")
+  });
+}
+
+
 HTML_OUTPUT.innerHTML = "";
 highscoreTable = {
         game1: {
